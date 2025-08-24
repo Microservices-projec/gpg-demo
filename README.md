@@ -1,4 +1,3 @@
-# gpg-demo
 # Project Setup Guide - Google Play Games Style Demo
 
 I'll guide you through the complete setup process step-by-step.
