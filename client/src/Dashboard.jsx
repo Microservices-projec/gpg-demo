@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { apiGet, apiPost } from '../api';
+import { apiGet, apiPost } from './api';
 
 export default function Dashboard({ user, onLogout }) {
   const [userData, setUserData] = useState(null);
@@ -49,7 +49,7 @@ export default function Dashboard({ user, onLogout }) {
     try {
       const response = await apiPost('/data', {
         level: (userData?.level || 1) + 1,
-        xp: 0
+        xp: 0 // Reset XP on level up
       });
 
       setUserData(response.data);
@@ -96,6 +96,7 @@ export default function Dashboard({ user, onLogout }) {
         </div>
       )}
 
+      {/* Stats Card */}
       <div className="card">
         <h3>Player Stats</h3>
         <div className="row">
@@ -117,6 +118,7 @@ export default function Dashboard({ user, onLogout }) {
         </div>
       </div>
 
+      {/* Actions Card */}
       <div className="card">
         <h3>Game Actions</h3>
         <div className="row">
@@ -132,6 +134,7 @@ export default function Dashboard({ user, onLogout }) {
         </div>
       </div>
 
+      {/* Achievements Card */}
       <div className="card">
         <h3>Achievements ({userData?.blogs?.length || 0})</h3>
         {userData?.blogs?.length > 0 ? (
@@ -150,6 +153,7 @@ export default function Dashboard({ user, onLogout }) {
         )}
       </div>
 
+      {/* Debug Info */}
       <div className="card">
         <h3>Debug Information</h3>
         <details>
